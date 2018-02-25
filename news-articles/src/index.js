@@ -1,5 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import News from './News';
+// import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
 
-ReactDOM.render(<News />, document.getElementById('root'));
+ReactDOM.render(App, document.getElementById("root"));
+
+

@@ -1,0 +1,18 @@
+.GelStyle {
+    width: 50%;
+    height: 100%;
+    position: relative; /*doesn't scroll*/
+    z-index: 100;
+    right: 0;
+    top: 0;
+    background-color: rgba(231, 44, 44, 0.5);
+    text-align:left;
+}
+
+.length {
+    width: 100%;
+    font-stretch: normal;
+    position:relative;
+    left: 10px;
+    text-align:left;
+}
