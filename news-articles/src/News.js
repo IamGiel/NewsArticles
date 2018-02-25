@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 // import './index.css';
 
+const time = moment().format('MMMM Do YYYY, h:mm:ss a');;
 class News extends Component {
   render() {
     return (
       <div className="News">
         <div className="News-header">
-          <h2>Welcome to React</h2>
+          <h2>Welcome to Newticles!</h2>
+          <h3>Today is {time}</h3>
         </div>
         <p className="News-intro">
-          To get started, edit <code>src/News.js</code> and save to reload.
+          Where the news articles are always served fresh.
         </p>
       </div>
     );
