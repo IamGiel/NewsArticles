@@ -14,23 +14,23 @@ const style = {
 
 const DividerExampleForm = () => (
 
-    <MuiThemeProvider>
-    <div className="GelStyle">
-    <Paper zDepth={2}>
-            <TextField hintText="Title Search" style={style} underlineShow={false} />
-            <Divider />
-            <div className="length">
-                <DatePicker hintText="Open to Year" openToYearSelection={true} />
-            </div>
-            <Divider />
-            <div className="length">
-                <DatePicker hintText="Open to Year" openToYearSelection={true} />
-            </div>
-            <Divider />
-            <RaisedButton label="Search" fullWidth={true} />
-    </Paper>
+<MuiThemeProvider>
+  <div className="GelStyle">
+  <Paper zDepth={2}>
+    <TextField hintText="Title Search" style={style} underlineShow={false} />
+    <Divider />
+    <div className="length">
+        <DatePicker hintText="Open to Year" openToYearSelection={true} />
     </div>
-    </MuiThemeProvider>
+    <Divider />
+    <div className="length">
+        <DatePicker hintText="Open to Year" openToYearSelection={true} />
+    </div>
+    <Divider />
+    <RaisedButton label="Search" fullWidth={true} />
+  </Paper>
+  </div>
+</MuiThemeProvider>
 
 
 );

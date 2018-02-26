@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
     "file-loader": "^1.1.9",
     "install": "^0.10.4",
     "jss": "^9.8.0",
