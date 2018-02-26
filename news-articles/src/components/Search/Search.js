@@ -5,11 +5,7 @@ import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
-// import { createGenerateClassName, jssPreset } from 'material-ui/styles';
-// from 'jss';
-// import JssProvider from 'react-jss/lib/JssProvider';import { create }
-
-import "./Search.css";
+import "../Styler/Styler.css";
 
 const style = {
     marginLeft: 20,

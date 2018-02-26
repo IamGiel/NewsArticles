@@ -1,15 +1,26 @@
 var mongoose = require("mongoose");
 
-// Save a reference to the Schema constructor
+// Schema constructor
 var Schema = mongoose.Schema;
 
 // Using the Schema constructor, create a new NoteSchema object
 // This is similar to a Sequelize model
 var NoteSchema = new Schema({
-  // `title` is of type String
-  title: String,
-  // `body` is of type String
-  body: String
+  // Title of Article
+  title: {
+    type: String,
+    required: true
+  },
+  Date: {
+    type: String,
+    default: moment().format('MMMM Do YYYY, h:mm A')
+  },
+
+  // Link to Article
+  link: {
+    type: String,
+    required: true
+  },
 });
 
 // This creates our model from the above schema, using mongoose's model method
