@@ -1,4 +1,5 @@
 import React from "react";
+import "../utils/API";
 
 const Search = props =>
   <form>

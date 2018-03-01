@@ -12,7 +12,7 @@ import API from "../utils/API";
 class NYTArticles extends Component {
   state = {
     results: {},
-    search: ""
+    search: "",
   };
 
 
@@ -68,19 +68,15 @@ class NYTArticles extends Component {
     return (
       <Container>
         <Row>
+
           <Col size="md-6">
-            <Panel
-              heading={this.state.results.Title || "Search for an article"}
-            >
-              {this.state.results.Title
-                ? <ArticleDetail
-                    title={this.state.results.Title}
-                    link={this.state.results.link}
-                    year={this.state.results.year}
-                  />
-                : <h3>No results to Display</h3>
-              }
-            </Panel>
+            <ArticleDetail>
+              <Panel
+                heading={this.state.results.Title || "Search for an article"}
+              >
+              </Panel>
+              {this.state.results}
+            </ArticleDetail>
           </Col>
 
           <Col size="md-6">
