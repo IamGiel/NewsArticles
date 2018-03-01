@@ -1,15 +1,11 @@
 import React from "react";
-
+import "../utils/API";
 const Panel = props =>
   <div className="panel panel-default">
-    <div className="panel-heading">
-      <h2>
-        {props.heading}
-      </h2>
-    </div>
-    <div className="panel-body">
-      {props.children}
-    </div>
+    <h3>{this.props.title}</h3>
+    <h3>{this.props.link}</h3>
+    <h3>{this.props.year}</h3>
+
   </div>;
 
 export default Panel;

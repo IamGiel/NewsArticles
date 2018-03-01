@@ -1,23 +1,36 @@
+// import React from "react";
+
+// const ArticleDetail = props => (
+//   <div className="text-center">
+//     <h3>
+//       Title: {props.children}
+//     </h3>
+//     <h3>
+//       Year: {props.children}
+//     </h3>
+//     <h3>
+//       link: {props.children}
+//     </h3>
+//   </div>
+// );
+
+// export default ArticleDetail;
+
 import React from "react";
 
-const MovieDetail = props => (
+const ArticleDetail = props => (
   <div className="text-center">
-    <img
-      alt={props.title}
-      className="img-responsive"
-      src={props.src}
-      style={{ margin: "0 auto" }}
-    />
     <h3>
-      Director(s): {props.director}
+      Article Title: {props.Title}
     </h3>
     <h3>
-      Genre: {props.genre}
+      Year: {props.Year}
     </h3>
     <h3>
-      Released: {props.released}
+      Link: {props.Link}
     </h3>
   </div>
 );
 
-export default MovieDetail;
+export default ArticleDetail;
+

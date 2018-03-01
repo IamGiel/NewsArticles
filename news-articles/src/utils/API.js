@@ -1,25 +1,42 @@
 import axios from "axios";
 
-
 export default {
-  search: function (query, startYear, endYear) {
-    var BASEURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=";
-    var search = "?api-key=866c1c46103642858f9ee86ed883446f&q=" + query;
-    if (startYear) {
-        search += '&begin_date=' + startYear + '0101';
-      }
-    if (endYear) {
-        search += '&end_date=' + endYear + '1231';
-      }
-    // Counter to keep track of article numbers as they come in
-    var articleCounter = 0;
-    return axios.get(BASEURL + search)
-      .then(function (response){
-        console.log(response);
-        console.log(articleCounter);
-      });
+  search: function (query, begin, end) {
+    var queryURL = 'https://api.nytimes.com/svc/search/v2/articlesearch.json';
+    var qs = '?api-key=866c1c46103642858f9ee86ed883446f&q=' + query;
 
+    if (begin) {
+      qs += '&begin_date=' + begin + '0101';
+    }
+
+    if (end) {
+      qs += '&end_date=' + end + '1231';
+    }
+
+
+    return axios.get(queryURL + qs).then(function (response) {
+      // If we get a result, return objects with the desired parts of the responses.
+      if (response.data.response.docs.length > 0) {
+        var responses = [];
+
+        for (var i = 0; i < 10; i++) {
+          var doc = response.data.response.docs[i];
+          var articleID = doc._id;
+          var article = {
+            title: doc.headline.main,
+            url: doc.web_url,
+            date: doc.pub_date,
+            articleID: articleID
+          };
+
+          responses.push(article);
+        }
+        return responses;
+
+      } else {
+        // If we don't get any results, return an empty string
+        return false;
+      }
+    });
   }
 }
-
-
