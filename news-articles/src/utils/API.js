@@ -1,3 +1,16 @@
+// import axios from "axios";
+
+// const BASEURL = "https://api.giphy.com/v1/gifs/search?q=";
+// const APIKEY = "&api_key=dc6zaTOxFJmzC&limit=20";
+
+// // Export an object with a "search" method that searches the Giphy API for the passed query
+// export default {
+//   search: function(query) {
+//     console.log(axios.get(BASEURL + query + APIKEY));
+//     return axios.get(BASEURL + query + APIKEY);
+//   }
+// };
+
 import axios from "axios";
 
 export default {
@@ -16,6 +29,7 @@ export default {
 
     return axios.get(queryURL + qs).then(function (response) {
       // If we get a result, return objects with the desired parts of the responses.
+      // console.log(response);
       if (response.data.response.docs.length > 0) {
         var responses = [];
 
@@ -31,6 +45,7 @@ export default {
 
           responses.push(article);
         }
+        console.log(responses);
         return responses;
 
       } else {

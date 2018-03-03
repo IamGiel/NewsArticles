@@ -1,6 +1,6 @@
 import React from "react";
-import NYTArticle from "./components/NYTArticle";
+import SearchResultContainer from "./components/SearchResultContainer";
 
-const App = () => <NYTArticle />;
+const App = () => <SearchResultContainer />;
 
 export default App;
