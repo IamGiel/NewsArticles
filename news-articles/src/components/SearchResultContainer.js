@@ -11,7 +11,7 @@ class SearchResultContainer extends Component {
 
   // When this component mounts, search the Giphy API for pictures of kittens
   componentDidMount() {
-    this.searchGiphy("Obama");
+    this.searchGiphy();
   }
 
   searchGiphy = query => {
