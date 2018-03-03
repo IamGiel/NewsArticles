@@ -38,16 +38,11 @@ class SearchResultContainer extends Component {
   };
 
   render() {
-    return (
-      <div>
-        <Search
-          search={this.state.search}
-          handleFormSubmit={this.handleFormSubmit}
-          handleInputChange={this.handleInputChange}
-        />
-        <Results results={this.state.results} />
-      </div>
-    );
+    return <div>
+        <Search search={this.state.search} handleFormSubmit={this.handleFormSubmit} handleInputChange={this.handleInputChange} />
+
+        <Results results={this.state.results} url={this.state.url} />
+      </div>;
   }
 }
 

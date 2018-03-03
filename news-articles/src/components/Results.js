@@ -4,10 +4,12 @@ const Results = props => {
   return (
   <ul className="list-group">
     {props.results.map(result => {
-      return(
-      <li className="list-group-item" key={result.id}>
-          {result.title}
-      </li>)
+      return (
+      <a href={result.url} onClick={result.handleArticleOnClick}>
+        <li className="list-group-item" key={result.id}>
+            {result.title}
+        </li>
+      </a>)
     })
     }
     </ul>
