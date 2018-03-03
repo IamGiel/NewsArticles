@@ -37,12 +37,23 @@ class SearchResultContainer extends Component {
     this.searchGiphy(this.state.search);
   };
 
+  handleArticleOnClick = event => {
+    event.preventDefault();
+    this.searchGiphy(this.state.url);
+  };
+
   render() {
-    return <div>
-        <Search search={this.state.search} handleFormSubmit={this.handleFormSubmit} handleInputChange={this.handleInputChange} />
+    return (
+      <div>
+        <Search
+          search={this.state.search}
+          handleFormSubmit={this.handleFormSubmit}
+          handleInputChange={this.handleInputChange}
+        />
 
         <Results results={this.state.results} url={this.state.url} />
-      </div>;
+      </div>
+    );
   }
 }
 
