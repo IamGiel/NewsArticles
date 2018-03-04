@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Search from "./Search";
 import Results from "./Results";
 import API from "../utils/API";
+import mongoApi from "../utils/mongoApi";
+
 
 class SearchResultContainer extends Component {
   state = {
@@ -11,10 +13,10 @@ class SearchResultContainer extends Component {
 
   // When this component mounts, search the Giphy API for pictures of kittens
   componentDidMount() {
-    this.searchGiphy();
+    this.searchNYTimes();
   }
 
-  searchGiphy = query => {
+  searchNYTimes = query => {
     API.search(query)
       .then(res => {
         this.setState({ results: res });
@@ -31,11 +33,11 @@ class SearchResultContainer extends Component {
     });
   };
 
-  // When the form is submitted, search the Giphy API for `this.state.search`
+  // When the form is submitted, search the API for `this.state.search`
   handleFormSubmit = event => {
     event.preventDefault();
     console.log("handleFormSubmit");
-    this.searchGiphy(this.state.search);
+    this.searchNYTimes(this.state.search);
   };
 
   removeArticle = id => {
@@ -48,24 +50,26 @@ class SearchResultContainer extends Component {
   handleArticleOnClick = event => {
     event.preventDefault();
     console.log("handleArticleOnClick");
-    this.searchGiphy(this.state.url);
+    this.searchNYTimes(this.state.url);
   };
 
+
+  // note: 
   handleSaveArticle = event => {
   event.preventDefault();
   console.log("handleSaveArticle");
-  if (this.state.title && this.state.author) {
-    API.saveBook({
+  if (this.state.title) {
+    mongoApi.saveArticle({
       title: this.state.title,
-      author: this.state.author,
-      synopsis: this.state.synopsis
+      date: this.state.date,
+      // link: this.state.link
     })
       .then(res => this.loadBooks())
       .catch(err => console.log(err));
   }
     // event.preventDefault();
     // console.log("saving article...");
-    // this.searchGiphy(this.state.results);
+    // this.searchNYTimes(this.state.results);
   };
 
   render() {
@@ -79,7 +83,7 @@ class SearchResultContainer extends Component {
 
         <Results
           results={this.state.results}
-          url={this.state.url}
+          // url={this.state.url}
           handleSaveArticle={this.handleSaveArticle}
         />
       </div>
