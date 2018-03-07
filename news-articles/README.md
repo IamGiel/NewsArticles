@@ -1,15 +1,7 @@
 # React NYTimes
-A React.js-based New York Times archive exploration tool.
-
-## Prerequisites
-- Node.js/npm
-- MongoDB
-- Webpack
+A React.js-based exploration tool.
 
 ## Getting Started
-To view the site as deployed on Heroku, you can visit
-
-If you would like to run the site locally, please ensure that you have installed the prerequisites, then follow the steps below:
 
 1. If you have not set up MongoDB to run as a service, run `mongod` in a terminal window. Leave this window running and open a new window. 
 2. Clone this repository to your machine.
@@ -30,9 +22,3 @@ If you would like to run the site locally, please ensure that you have installed
 
 ## Author
 Gel - [gel](https://github.com/IamGiel)
-
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
-
-## Acknowledgements
-The authors of this project would like to thank Northwestern University Coding Boot Camp for direction and support in creating this product.
