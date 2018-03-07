@@ -7,12 +7,12 @@ A React.js-based New York Times archive exploration tool.
 - Webpack
 
 ## Getting Started
-To view the site as deployed on Heroku, you can visit <https://react-nytimes.herokuapp.com/>.
+To view the site as deployed on Heroku, you can visit
 
 If you would like to run the site locally, please ensure that you have installed the prerequisites, then follow the steps below:
 
 1. If you have not set up MongoDB to run as a service, run `mongod` in a terminal window. Leave this window running and open a new window. 
-2. Clone this repository to your machine with `git clone http://github.com/mchlltt/react-nytimes.git`.
+2. Clone this repository to your machine.
 3. Navigate to the cloned directory.
 4. Run `npm install` to install required packages and dependencies.
 5. Run `npm run dev` to build the site with webpack and then deploy it with Node.js.
