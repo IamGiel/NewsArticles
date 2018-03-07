@@ -1,13 +1,23 @@
-# NewsArticles
-React Application, Node, Express, Mongo_DB => React mounting lifecycle to query and display articles based on user searches
+# React NYTimes
+A React.js-based exploration tool.
 
-<hr>
-To Start:
+## Getting Started
 
-<ul>
-<ol>cd news-articles</ol>
-<ol>yarn install</ol>
-<ol>yarn start</ol>
-<ol>open port 3000 or localhost://3000</ol>
-<ol>heroku deployment soon...</ol>
-</ul>
+1. If you have not set up MongoDB to run as a service, run `mongod` in a terminal window. Leave this window running and open a new window. 
+2. Clone this repository to your machine with with `git clone https://github.com/IamGiel/NewsArticles.git`
+3. Navigate to the cloned directory.
+4. Run `npm install` to install required packages and dependencies.
+5. The application will be running at `localhost:3000/`.
+
+## Technologies Used
+- React.js (UI library)
+- Express.js (Server framework)
+- Node.js (JavaScript enviornment)
+- MongoDB (NoSQL Database)
+- Mongoose (ODM)
+- Bootstrap (Front-end framework)
+- Heroku (Cloud platform)
+- mLab (Heroku MongoDB add-on)
+
+## Author
+Gel - [gel](https://github.com/IamGiel)
