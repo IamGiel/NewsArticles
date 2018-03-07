@@ -3,7 +3,6 @@ import React from "react";
 const Search = props =>
 <div className="container fluid">
   <form>
-    
     <div className="form-group">
       <label htmlFor="search">FH-V2</label>
       <input
@@ -12,7 +11,7 @@ const Search = props =>
         name="search"
         type="text"
         className="form-control"
-        placeholder="Search a New York Times"
+        placeholder="Search New York Times"
         id="search"
       />
       <button onClick={props.handleFormSubmit} className="btn btn-primary">

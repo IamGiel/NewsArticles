@@ -13,7 +13,7 @@ var ArticleSchema = new Schema({
   },
   date: {
     type: Date,
-    default: Date.now
+    // default: Date.now
   },
   // `link` is required and of type String
   link: {

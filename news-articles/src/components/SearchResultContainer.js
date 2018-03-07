@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import Search from "./Search";
 import Results from "./Results";
+// import Saved from "./Saved";
+// import ListItem from "./Saved";
+
+
 import API from "../utils/API";
 import mongoApi from "../utils/mongoApi";
 
@@ -13,7 +17,8 @@ class SearchResultContainer extends Component {
 
   // When this component mounts, search the Giphy API for pictures of kittens
   componentDidMount() {
-    this.searchNYTimes();
+    // console.log("componentDidMount");
+    this.searchNYTimes("Nba");
   }
 
   searchNYTimes = query => {
@@ -40,21 +45,15 @@ class SearchResultContainer extends Component {
     this.searchNYTimes(this.state.search);
   };
 
-  removeArticle = id => {
-    // Filter this.state.friends for friends with an id not equal to the id being removed
-    const articleResults = this.state.results.filter(res => res.id !== id);
-    // Set this.state.friends equal to the new friends array
-    this.setState({ articleResults });
-  };
-
-  handleArticleOnClick = event => {
-    event.preventDefault();
-    console.log("handleArticleOnClick");
-    this.searchNYTimes(this.state.url);
-  };
+  // removeArticle = id => {
+  //   // Filter this.state.friends for friends with an id not equal to the id being removed
+  //   const articleResults = this.state.results.filter(res => res.id !== id);
+  //   // Set this.state.friends equal to the new friends array
+  //   this.setState({ articleResults });
+  // };
 
 
-  // note: 
+  // note:
   handleSaveArticle = event => {
   event.preventDefault();
   console.log("handleSaveArticle");
@@ -64,30 +63,17 @@ class SearchResultContainer extends Component {
       date: this.state.date,
       // link: this.state.link
     })
-      .then(res => this.loadBooks())
+      .then(res => this.searchNYTimes())
       .catch(err => console.log(err));
-  }
-    // event.preventDefault();
-    // console.log("saving article...");
-    // this.searchNYTimes(this.state.results);
+    }
   };
 
   render() {
-    return (
-      <div>
-        <Search
-          search={this.state.search}
-          handleFormSubmit={this.handleFormSubmit}
-          handleInputChange={this.handleInputChange}
-        />
+    return (<div>
+        <Search search={this.state.search} handleFormSubmit={this.handleFormSubmit} handleInputChange={this.handleInputChange}/>
 
-        <Results
-          results={this.state.results}
-          // url={this.state.url}
-          handleSaveArticle={this.handleSaveArticle}
-        />
-      </div>
-    );
+        <Results results={this.state.results} disabled={!(this.state.author && this.state.title)} onClick={this.handleSaveArticle} />
+        </div>);
   }
 }
 

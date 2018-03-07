@@ -9,22 +9,16 @@ const Results = props => {
 
       <ul className="list-group">
         {props.results.map(result => {
-          return (
-            <li className="list-group-item" key={result.id}>
+          return <li className="list-group-item" key={result.id}>
               <a href={result.url}>
                 {result.title}
                 <br />
                 <Moment format="YYYY/MM/DD">{result.date}</Moment>
               </a>
-              <button
-                type="button"
-                className={`pull-right ${styles.style}`}
-                onClick={result.handleSaveArticle}
-              >
+              <button type="button" className={`pull-right ${styles.style}`} onClick={props.handleSaveArticle}>
                 Save{" "}
               </button>
-            </li>
-          );
+            </li>;
         })}
       </ul>
     </div>
@@ -32,23 +26,3 @@ const Results = props => {
 };
 
 export default Results;
-
-/* <button
-  type="button"
-  className="btn-info pull-right"
-  onClick={result.handleSaveArticle}
->
-  Save{" "}
-</button>; */
-
-// import React  from 'react';
-
-// exports default class MyComponent extends React.Component {
-//     render() {
-//         return (
-//             <Moment format="YYYY/MM/DD">
-//                 1976-04-19T12:59-0500
-//             </Moment>
-//         );
-//     }
-// }
