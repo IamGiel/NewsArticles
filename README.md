@@ -4,8 +4,8 @@ A React.js-based exploration tool.
 ## Getting Started
 
 1. If you have not set up MongoDB to run as a service, run `mongod` in a terminal window. Leave this window running and open a new window. 
-2. Clone this repository to your machine with with `git clone https://github.com/IamGiel/NewsArticles.git`
-3. Navigate to the cloned directory.
+2. Clone this repository to your machine with with `git clone https://github.com/IamGiel/NewsArticles.git` 
+3. Navigate to the cloned directory then `cd news-articles`
 4. Run `npm install` to install required packages and dependencies.
 5. The application will be running at `localhost:3000/`.
 
