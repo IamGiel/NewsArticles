@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Search from "./Search";
 import Results from "./Results";
 import API from "../utils/API";
+import Divider from "./Divider";
+
 
 class SearchResultContainer extends Component {
   state = {
@@ -71,17 +73,21 @@ class SearchResultContainer extends Component {
   render() {
     return (
       <div>
+      <Divider>
         <Search
           search={this.state.search}
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
         />
+    
+
 
         <Results
           results={this.state.results}
           url={this.state.url}
           handleSaveArticle={this.handleSaveArticle}
         />
+        </Divider>
       </div>
     );
   }
