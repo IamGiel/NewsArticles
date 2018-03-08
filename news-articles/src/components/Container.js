@@ -9,16 +9,14 @@ import styles from "../styles/style.scss";
 
 //day picker
 import DayPickerInput from "react-day-picker/DayPickerInput";
-// import "react-day-picker/lib/style.css";
-
-import MomentLocaleUtils, {
+import "react-day-picker/lib/style.css";
+import {
   formatDate,
   parseDate
 } from "react-day-picker/moment";
 
 import "moment/locale/it";
-
-
+//api
 import API from "../utils/API";
 import Routes from "../utils/getRoutes";
 
@@ -116,6 +114,7 @@ class ComponentContainer extends Component {
         <form>
           <div className="form-group">
             <label htmlFor="search">FH-V2</label>
+          
             <input
               onChange={this.handleInputChange}
               value={this.state.search}
@@ -125,16 +124,20 @@ class ComponentContainer extends Component {
               placeholder="Search a New York Times"
               id="search"
             />
-            <input
+              <DayPickerInput
               value={this.state.startYear}
               onChange={this.handleInputChange}
               name="startYear"
-              placeholder={`${formatDate(new Date())}`}
+              formatDate={formatDate}
+              parseDate={parseDate}
+              placeholder="01/01/1990"
             />
-            <input
+            <DayPickerInput
               value={this.state.endYear}
               onChange={this.handleInputChange}
               name="endYear"
+              formatDate={formatDate}
+              parseDate={parseDate}
               placeholder={`${formatDate(new Date())}`}
             />
             <button onClick={this.handleFormSubmit} className="btn btn-primary">
