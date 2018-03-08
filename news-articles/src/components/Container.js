@@ -10,10 +10,7 @@ import styles from "../styles/style.scss";
 //day picker
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import "react-day-picker/lib/style.css";
-import {
-  formatDate,
-  parseDate
-} from "react-day-picker/moment";
+import { formatDate, parseDate } from "react-day-picker/moment";
 
 import "moment/locale/it";
 //api
@@ -24,24 +21,78 @@ class ComponentContainer extends Component {
   state = {
     search: "",
     results: [],
-    saved: []
+    saved: [],
+    term: "",
+    begin: "",
+    end: "",
+    searched: "",
+    message: ""
   };
 
-  // When this component mounts, search the API for Obama
-  componentDidMount() {
-    this.NYTArticles("Obama");
+
+
+  componentDidUpdate() {
+    // Check whether we have a new queryURL.
+    if (
+      this.state.searched !==
+      this.state.term + this.state.begin + this.state.end
+    ) {
+      this.setState({
+        searched: this.state.term + this.state.begin + this.state.end
+      });
+      // Run the query for the address
+      API.runQuery(this.state.term, this.state.begin, this.state.end).then(
+        function(data) {
+          if (data) {
+            if (JSON.stringify(data) !== JSON.stringify(this.state.results)) {
+              this.setState({ results: data });
+            }
+          } else {
+            this.setState({ message: "No results found!" });
+          }
+        }.bind(this)
+      );
+    }
+  }
+  // When a user submits...
+  handleFormSubmit(event) {
+    // prevent the HTML from trying to submit a form if the user hits "Enter" instead of
+    // clicking the button
+    event.preventDefault();
+    if (this.state.searched !== this.state.term + this.state.begin + this.state.end) {
+      this.setState({
+        searched: this.state.term + this.state.begin + this.state.end
+      });
+      // Run the query for the address
+      API.runQuery(this.state.term, this.state.begin, this.state.end).then(function(data) {
+          if (data) {
+            if (JSON.stringify(data) !== JSON.stringify(this.state.results)) {
+              this.setState({ results: data });
+            }
+          } else {
+            this.setState({ message: "No results found!" });
+          }
+        }.bind(this));
+    }
+    console.log(event);
   }
 
-  NYTArticles = query => {
-    API.search(query)
-      .then(res => {
-        this.setState({ results: res });
-        console.log(this.state.results, "test");
-      })
-      .catch(err => console.log(err));
-  };
+  // When this component mounts, search the API for Obama
+  // componentDidMount() {
+  //   this.NYTArticles("Obama");
+  // }
+
+  // NYTArticles = search => {
+  //   API.getArticles(search)
+  //     .then(res => {
+  //       this.setState({ results: res });
+  //       console.log(this.state.results, "test");
+  //     })
+  //     .catch(err => console.log(err));
+  // };
 
   handleInputChange = event => {
+    console.log("got user input!")
     const name = event.target.name;
     const value = event.target.value;
     this.setState({
@@ -49,12 +100,12 @@ class ComponentContainer extends Component {
     });
   };
 
-  // When the form is submitted, search the Giphy API for `this.state.search`
-  handleFormSubmit = event => {
-    event.preventDefault();
-    console.log("handleFormSubmit");
-    this.NYTArticles(this.state.search);
-  };
+  // // When the form is submitted, search the Giphy API for `this.state.search`
+  // handleFormSubmit = event => {
+  //   event.preventDefault();
+  //   console.log("handleFormSubmit");
+  //   this.NYTArticles(this.state.search);
+  // };
 
   removeArticle = id => {
     // Filter this.state.friends for friends with an id not equal to the id being removed
@@ -64,9 +115,9 @@ class ComponentContainer extends Component {
     console.log("this is removeArticle Function firing >>>>>");
   };
 
-  handleArticleOnClick = event => {
+  searchNYTimes = event => {
     event.preventDefault();
-    console.log("handleArticleOnClick");
+    console.log("searchNYTimes");
     this.NYTArticles(this.state.url);
   };
 
@@ -81,17 +132,17 @@ class ComponentContainer extends Component {
       .catch(err => console.log(err));
   };
 
-  loadNYTArticles = articlesArray => {
-    if (articlesArray.length > 5) {
-      articlesArray.length = 5;
-    }
-    this.setState({
-      NYTArticles: articlesArray,
-      startYear: "",
-      endYear: "",
-      searchTerm: ""
-    });
-  };
+  // loadNYTArticles = articlesArray => {
+  //   if (articlesArray.length > 5) {
+  //     articlesArray.length = 5;
+  //   }
+  //   this.setState({
+  //     NYTArticles: articlesArray,
+  //     startYear: "",
+  //     endYear: "",
+  //     searchTerm: ""
+  //   });
+  // };
 
   handleSaveArticle = event => {
     event.preventDefault();
@@ -108,13 +159,12 @@ class ComponentContainer extends Component {
   };
 
   render() {
+    //====================== this is a SEARCH FORM ==========================//
     return (
-      //====================== this is a SEARCH FORM ==========================//
       <div className="container fluid separator">
-        <form>
-          <div className="form-group">
-            <label htmlFor="search">FH-V2</label>
-          
+        <div className="query">
+          <form onSubmit={this.handleSubmit}>
+            <label htmlFor="search">{"---<@@@ ...Search... @@@>---"}</label>
             <input
               onChange={this.handleInputChange}
               value={this.state.search}
@@ -124,7 +174,50 @@ class ComponentContainer extends Component {
               placeholder="Search a New York Times"
               id="search"
             />
-              <DayPickerInput
+            <label htmlFor="begin">Begin year:</label>
+            <DayPickerInput
+              type="number"
+              value={this.state.begin}
+              onChange={this.handleInputChange}
+              formatDate={formatDate}
+              parseDate={parseDate}
+              placeholder="01/01/1990"
+              id="begin"
+              className="form-control"
+              required
+            />
+            <label htmlFor="end">End year:</label>
+            <DayPickerInput
+              type="number"
+              value={this.state.end}
+              onChange={this.handleInputChange}
+              formatDate={formatDate}
+              parseDate={parseDate}
+              placeholder="select end date"
+              id="begin"
+              className="form-control"
+              required
+            />
+            <button 
+            disabled={!(this.state.term) && (this.state.begin) && (this.state.end)}
+                onClick={this.handleFormSubmit.bind(this)} className="btn btn-primary">
+              Search
+            </button>
+          </form>
+        </div>
+        {/* <form>
+          <div className="form-group">
+            <label htmlFor="search">{"---<@@@ ...Search... @@@>---"}</label>
+            <input
+              onChange={this.handleInputChange}
+              value={this.state.search}
+              name="search"
+              type="text"
+              className="form-control"
+              placeholder="Search a New York Times"
+              id="search"
+            />
+            <DayPickerInput
               value={this.state.startYear}
               onChange={this.handleInputChange}
               name="startYear"
@@ -144,7 +237,7 @@ class ComponentContainer extends Component {
               Search
             </button>
           </div>
-        </form>
+        </form> */}
 
         {/* //====================== RESULTS Show Here ==========================// */}
 
@@ -203,6 +296,7 @@ class ComponentContainer extends Component {
               <h3>No Results to Display</h3>
             )}
           </ul>
+          <label htmlFor="search">An FH-V2 project</label>
         </div>
       </div>
     ); //div wrapper
@@ -223,7 +317,7 @@ class ComponentContainer extends Component {
     //   <Saved
     //     saved={this.state.saved}
     //     url={this.state.url}
-    //     handleArticleOnClick={this.handleArticleOnClick}
+    //     searchNYTimes={this.searchNYTimes}
     //   />
     // </div>
   }
