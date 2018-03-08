@@ -1,6 +1,6 @@
 import React from "react";
-import SearchResultContainer from "./components/SearchResultContainer";
+import ComponentContainer from "./components/Container";
 
-const App = () => <SearchResultContainer />;
+const App = () => <ComponentContainer />;
 
 export default App;
