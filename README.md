@@ -4,7 +4,9 @@ A React.js-based New York Times archive exploration tool.
 ## Prerequisites
 - Node.js/npm
 - MongoDB
-- Webpack
+- Express
+- NodeJS
+- Hence, =>  MERN
 
 ## Getting Started
 To view the site as deployed on Heroku, you can visit <a>upcoming heroku site</a>
