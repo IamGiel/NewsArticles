@@ -7,11 +7,11 @@ export default {
     var qs = '?api-key=866c1c46103642858f9ee86ed883446f&q=' + query;
 
     if (begin) {
-      qs += '&begin_date=' + begin;
+      qs += '&begin_date=' + begin + "0101";
     }
 
     if (end) {
-      qs += '&end_date=' + end;
+      qs += '&end_date=' + end + "1231";
     }
 
 

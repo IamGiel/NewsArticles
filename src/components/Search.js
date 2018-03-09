@@ -3,8 +3,14 @@ import React from "react";
 // import DayPickerInput from "react-day-picker/DayPickerInput";
 // import "react-day-picker/lib/style.css";
 // import { formatDate, parseDate } from "react-day-picker/moment";
+// import Moment from "react-moment";
+import InputMask from "react-input-mask";
 
-const Search = props => (
+
+
+
+const Search = props => {
+return (
   <div className="container fluid">
     <form>
       <div className="form-group">
@@ -19,48 +25,28 @@ const Search = props => (
           placeholder="Search a New York Times"
           id="search"
         />
-        <input
+        <InputMask
           onChange={props.handleInputChange}
           value={props.begin}
           name="begin"
           type="text"
           className="form-control"
-          placeholder="Search a New York Times"
+          placeholder="Ender 4 digit Start search Year"
           id="search"
+          mask="9999"
+          maskChar=" "
         />
-        <input
+        <InputMask
           onChange={props.handleInputChange}
           value={props.end}
           name="end"
           type="text"
           className="form-control"
-          placeholder="Search a New York Times"
+          placeholder="Ender 4 digit End search Year"
           id="search"
+          mask="9999"
+          maskChar=" "
         />
-        {/* <DayPickerInput
-          name="begin"
-          type="number"
-          value={props.begin}
-          onChange={props.handleInputChange}
-          formatDate={formatDate}
-          parseDate={parseDate}
-          placeholder="01/01/1990"
-          id="begin"
-          className="form-control"
-          required
-        />
-        <DayPickerInput
-          name="end"
-          type="number"
-          value={props.end}
-          onChange={props.handleInputChange}
-          formatDate={formatDate}
-          parseDate={parseDate}
-          placeholder="end"
-          id="begin"
-          className="form-control"
-          required
-        /> */}
         <button onClick={props.handleFormSubmit} className="btn btn-primary">
           Search
         </button>
@@ -68,5 +54,6 @@ const Search = props => (
     </form>
   </div>
 );
+}
 
 export default Search;
