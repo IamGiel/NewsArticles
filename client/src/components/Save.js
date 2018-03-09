@@ -1,10 +1,11 @@
 import React from "react";
-// import styles from "../styles/style.css";
+import styles from "../styles/style.css";
 // import Moment from "react-moment";
 
 
 const Saved = props => {
-  return (<div>Saved Searches Here...</div>);
+
+  return <div className="container fluid">Saved Searches Here...</div>;
 }
 export default Saved;
 

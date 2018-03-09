@@ -4,6 +4,7 @@ import Results from "./Results";
 import Save from "./Save";
 
 import API from "../utils/API";
+import MongoSearch from "../utils/mongoApi";
 
 
 class SearchResultContainer extends Component {
@@ -12,16 +13,27 @@ class SearchResultContainer extends Component {
     results: [],
     begin: "",
     end: "",
-    saved:""
+    saved: ""
   };
 
-  // When this component mounts, search the Giphy API for pictures of kittens
+  //When this component mounts, search the Database automatically
   componentDidMount() {
-    this.searchNYTimes();
+    this.searchDB();
   }
 
+  //this will search API
   searchNYTimes = (query, begin, end) => {
     API.search(query, begin, end)
+      .then(res => {
+        this.setState({ results: res });
+        console.log(this.state.results, "test");
+      })
+      .catch(err => console.log(err));
+  };
+//this will search database for saved articles
+  searchDB = (query, begin, end) => {
+    console.log("mongo-searching....");
+    MongoSearch.getArticles(query, begin, end)
       .then(res => {
         this.setState({ results: res });
         console.log(this.state.results, "test");
@@ -86,6 +98,7 @@ class SearchResultContainer extends Component {
           handleInputChange={this.handleInputChange}
           handleDateChange={this.handleDateChange}
         />
+          <hr></hr>
 
         <Results
           results={this.state.results}
@@ -93,6 +106,8 @@ class SearchResultContainer extends Component {
           id={this.state.id}
           handleSaveArticle={this.handleSaveArticle}
         />
+
+          <hr></hr>
         <Save
           results={this.state.results}
           url={this.state.url}
