@@ -6,7 +6,7 @@ var mongojs = require("mongojs");
 var app = express();
 
 // Set up a static folder (public) for our web app
-// This line tells `app` to look inside public folder and search for a static file (html)
+// This line tells `app` to look inside client/build folder and search for a static file (html)
 // and to display the file called `index.html` at the root
 app.use(express.static("client/build"));
 
@@ -30,17 +30,20 @@ app.get("/", function(req, res) {
 });
 
 // 2. At the "/all" path, display every entry in the [article] collection
-app.get("/all", function(req, res) {
+app.get("/api/saved", function(req, res) {
+  // console.log();
+  console.log("server.js firing >>>>>",req.body);
+  res.json(true);
   // Query: In our database, go to the [NYTimesArticles] collection, then "find" everything
-  db.NYTimesArticles.find({}, function(error, found) {
-    // Log any errors if the server encounters one
-    if (error) {
-      console.log(error);
-    } else {
-      // Otherwise, send the result of this query to the browser
-      res.json(found);
-    }
-  });
+  // db.NYTimesArticles.find({}, function(error, found) {
+  //   // Log any errors if the server encounters one
+  //   if (error) {
+  //     console.log(error);
+  //   } else {
+  //     // Otherwise, send the result of this query to the browser
+  //     res.json(found);
+  //   }
+  // });
 });
 
 // 3. At the "/name" path, display every entry in the [NYTimesArticles] collection, sorted by [date]

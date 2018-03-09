@@ -17,7 +17,7 @@ const Results = props => {
                   {result.date}
                 </Moment>
               </a>
-              <button type="button" className={`pull-right ${styles.style}`} onClick={result.handleSaveArticle} key={result.id}>
+              <button type="button" className={`pull-right ${styles.style}`} onClick={props.handleSaveSubmit} key={result.id}>
                 Save{" "}
               </button>
             </li>;
@@ -29,24 +29,3 @@ const Results = props => {
 
 export default Results;
 
-
-/* <button
-  type="button"
-  className="btn-info pull-right"
-  onClick={result.handleSaveArticle}
->
-  Save{" "}
-</button>; */
-
-// import React  from 'react';
-
- 
-// exports default class MyComponent extends React.Component {
-//     render() {
-//         return (
-//             <Moment format="YYYY/MM/DD">
-//                 1976-04-19T12:59-0500
-//             </Moment>
-//         );
-//     }
-// }

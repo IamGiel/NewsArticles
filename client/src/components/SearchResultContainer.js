@@ -4,36 +4,27 @@ import Results from "./Results";
 import Save from "./Save";
 
 import API from "../utils/API";
-import MongoSearch from "../utils/mongoApi";
 
 
 class SearchResultContainer extends Component {
   state = {
-    search: "",
+    search: [],
     results: [],
     begin: "",
     end: "",
-    saved: ""
+    saved: "",
+    title: "",
+    date: ""
   };
 
   //When this component mounts, search the Database automatically
   componentDidMount() {
-    this.searchDB();
+    // this.searchDB();
   }
 
   //this will search API
   searchNYTimes = (query, begin, end) => {
     API.search(query, begin, end)
-      .then(res => {
-        this.setState({ results: res });
-        console.log(this.state.results, "test");
-      })
-      .catch(err => console.log(err));
-  };
-//this will search database for saved articles
-  searchDB = (query, begin, end) => {
-    console.log("mongo-searching....");
-    MongoSearch.getArticles(query, begin, end)
       .then(res => {
         this.setState({ results: res });
         console.log(this.state.results, "test");
@@ -57,34 +48,41 @@ class SearchResultContainer extends Component {
     this.searchNYTimes(this.state.search, this.state.begin, this.state.end);
   };
 
-  removeArticle = id => {
-    // Filter this.state.friends for friends with an id not equal to the id being removed
-    const articleResults = this.state.results.filter(res => res.id !== id);
-    // Set this.state.friends equal to the new friends array
-    this.setState({ articleResults });
-  };
+  // //this will search database for saved articles
+  // searchDB = (query, begin, end) => {
+  //   console.log("mongo-searching....");
+  //   MongoSearch.getArticles(query, begin, end)
+  //     .then(res => {
+  //       this.setState({ results: res });
+  //       console.log(this.state.results, "test");
+  //     })
+  //     .catch(err => console.log(err));
+  // };
 
-  handleArticleOnClick = event => {
-    event.preventDefault();
-    console.log("handleArticleOnClick");
-    this.searchNYTimes(this.state.url);
-  };
+  // // Loads all articles  and sets them to this.state.books
+  // loadArticles = () => {
+  //   MongoSearch.getArticles()
+  //     .then(res =>
+  //       this.setState({
+  //         results: res.data,
+  //         title: "",
+  //         author: ""
+  //       })
+  //     )
+  //     .catch(err => console.log(err));
+  // };
 
-  handleSaveArticle = event => {
+  handleSaveSubmit = event => {
     event.preventDefault();
-    console.log("handleSaveArticle");
-    if (this.state.title && this.state.author) {
-      API.saveBook({
+    console.log("its working to save articles...")
+    if (this.state.title && this.state.date) {
+      API.postSaved({
         title: this.state.title,
-        author: this.state.author,
-        synopsis: this.state.synopsis
+        date: this.state.date
       })
-        .then(res => this.loadBooks())
+        .then(res => this.loadArticles())
         .catch(err => console.log(err));
     }
-    // event.preventDefault();
-    // console.log("saving article...");
-    // this.searchNYTimes(this.state.results);
   };
 
   render() {
@@ -96,22 +94,20 @@ class SearchResultContainer extends Component {
           end={this.state.end}
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
-          handleDateChange={this.handleDateChange}
         />
-          <hr></hr>
-
+        <hr />
         <Results
           results={this.state.results}
           url={this.state.url}
           id={this.state.id}
-          handleSaveArticle={this.handleSaveArticle}
+          handleSaveSubmit={this.handleSaveSubmit}
         />
 
-          <hr></hr>
+        <hr /><p><center>Something Amazing</center></p><hr />
         <Save
           results={this.state.results}
-          url={this.state.url}
-          handleSaveArticle={this.handleSaveArticle}
+          // url={this.state.url}
+          handleSaveArticle={this.deleteArticle}
         />
       </div>
     );

@@ -45,6 +45,7 @@ export default {
 
    // This function hits our own server to retrieve the record of query results
     getSaved: function() {
+      console.log("this is API.JS trying to talk to server.js");
         return axios.get("/api/saved");
     },
 
