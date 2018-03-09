@@ -29,7 +29,7 @@ If you would like to run the site locally, please ensure that you have installed
 - mLab (Heroku MongoDB add-on)
 
 ## Author
-Mich Elliott - [Gel](https://github.com/IamGiel/NewsArticles)
+Gel - [Gel](https://github.com/IamGiel/NewsArticles)
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
