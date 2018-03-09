@@ -1,11 +1,11 @@
 import axios from "axios";
 
 export default {
-  // Gets all Article`s`  WITH >>>>> `s` <<<<<
-  getArticles: function() {
+  // Gets all Articles
+  getArticle: function() {
     return axios.get("/api/Articles");
   },
-  // Gets the Article` ` with the given id
+  // Gets the Article with the given id
   getArticle: function(id) {
     return axios.get("/api/Articles/" + id);
   },
