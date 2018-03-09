@@ -90,6 +90,7 @@ class SearchResultContainer extends Component {
         <Results
           results={this.state.results}
           url={this.state.url}
+          id={this.state.id}
           handleSaveArticle={this.handleSaveArticle}
         />
         <Save

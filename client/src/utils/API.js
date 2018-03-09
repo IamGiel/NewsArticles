@@ -7,11 +7,11 @@ export default {
     var qs = '?api-key=866c1c46103642858f9ee86ed883446f&q=' + query;
 
     if (begin) {
-      qs += '&begin_date=' + begin;
+      qs += '&begin_date=' + begin + "0101";
     }
 
     if (end) {
-      qs += '&end_date=' + end;
+      qs += '&end_date=' + end + "1231";
     }
 
 
@@ -41,5 +41,21 @@ export default {
         return false;
       }
     });
-  }
-}
+  },
+
+   // This function hits our own server to retrieve the record of query results
+    getSaved: function() {
+        return axios.get("/api/saved");
+    },
+
+    // This function posts new searches to our database.
+    postSaved: function(article) {
+        return axios.post('/api/saved', article);
+    },
+
+    // This function posts new searches to our database.
+    deleteSaved: function(articleID) {
+        return axios.delete('/api/saved/' + articleID);
+    }
+};
+
